@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valorant Signup</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1a1a1a; 
+      background-image: url("bgimage.jpg");
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color: white; 
+    }
+
+    fieldset {
+      background-color: #2b2b2b; 
+      border: none;
+      border-radius: 8px;
+      padding: 30px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      width: 320px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 18px;
+      color: white; 
+      margin-bottom: 10px;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #444;
+      border-radius: 4px;
+      font-size: 14px;
+      background-color: #333;
+      color: white; 
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #ff9900; 
+      box-shadow: 0 0 8px rgba(255, 153, 0, 0.6);
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #ff9900; 
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #cc7a00; 
+    }
+
+    p a {
+      color: #ff9900; 
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    p a:hover {
+      color: #cc7a00; 
+    }
+    .error {
+      color: #ff0000; 
+      margin-top: 10px;
+      text-align: center;
+    }
+    .success {
+      color: #00ff00; 
+      margin-top: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <fieldset>
+    <form action="/signup" method="POST" onsubmit="return validate()">
+      <h2>Email:</h2>
+      <input type="email" id="email2" required>
+      <h2>Password:</h2>
+      <input type="password" id="password2" required>
+      <h2>Confirm Password:</h2>
+      <input type="password" id="password3" required>
+      <h2>Username:</h2>
+      <input type="text" id="name" required>
+      <br><br>
+      <button type="submit" id="signup">Signup</button>
+      <p><a href="index.html">Back to log in?</a></p>
+      <div id="errorMessage" class="error"></div> 
+      <div id="successMessage" class="success"></div> 
+    </form>
+  </fieldset>
+
+  <script>
+    function validate() {
+      const email = document.getElementById('email2').value;
+      const pass2 = document.getElementById('password2').value;
+      const pass3 = document.getElementById('password3').value;
+      const errorMessage = document.getElementById('errorMessage');
+      const successMessage = document.getElementById('successMessage');
+      errorMessage.innerHTML = ''; 
+      successMessage.innerHTML = ''; 
+
+      if (!validateEmail(email)) {
+        errorMessage.innerHTML = 'Invalid email. Must end with gmail.com.';
+        return false;
+      }
+
+      if (pass2.length < 8) {
+        errorMessage.innerHTML = 'Password must be at least 8 characters long.';
+        return false;
+      }
+
+      if (pass2 !== pass3) {
+        errorMessage.innerHTML = 'Passwords do not match.';
+        return false;
+      }
+
+      
+      successMessage.innerHTML = 'Signup completed successfully!';
+      return false; 
+    }
+
+    function validateEmail(email) {
+      
+      return email.endsWith('@gmail.com');
+    }
+  </script>
+</body>
+</html>
